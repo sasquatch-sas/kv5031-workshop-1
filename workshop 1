@@ -1,0 +1,288 @@
+import re
+
+
+"""
+This workshop will help you revise basic Python concepts, including variables, loops, conditionals,
+ functions, data structures, and file handling. By completing the following exercises, you will 
+ revise your understanding of key Python features.
+
+If you have forgotten something talk to your workshop tutor. 
+
+
+"""
+
+def Q1(a, b):
+    """
+        In  called Q1 which takes two numbers a, and b and implements the function
+         a multipled by three  then add b which has been divided by two but the division must be integer so
+        7 divided by 3 is 2  NOT 2.3333
+
+        so (a=4, b=6) gives 14 and  (a=3, b=10 ) gives 14
+    """
+    return int(a * 3) + int(b / 2)
+
+def Q2(t):
+    """The function takes a string t, converts it to lowercase using t.lower(),
+    and prepends the string "The lower case value is " to the result.
+    The result is then returned.
+    """
+    return f"The lower case value is {t.lower()}"
+
+# Function Q3 that generates a list of strings "n Green Bottles"
+def Q3():
+    """Q3: Write a Python function Q3 that generates a list of strings. Each string should follow the format
+    "{n} Green Bottles" where n represents the number of bottles (from 1 to 128).
+    The function should return a list containing 128 strings, with each string representing
+    a consecutive number of green bottles.
+
+      For example, the first item in the list should be "1 Green Bottles",
+    and the last item should be "128 Green Bottles"."""
+
+    return [f"{n} Green Bottles" for n in range(1, 129)]
+
+# Function Q4 that returns True if both a and b are True
+def Q4(a, b):
+    """Q4: Write a Python function Q4 that takes two arguments a and b. The function should return True
+    only if both a and b are True. If either a or b is False, the function should return False.
+    """
+    return True if a and b else False
+
+# Function Q5 that returns True if a and b are True or a and c are True, but False if all three are True
+def Q5(a, b, c):
+    # Return True if either (a and b) or (a and c) is true, but not all three
+    return True if a and b and not c or a and c and not b else False
+
+
+def Q6(s):
+# Function Q6 that checks if the string follows the ####AFA### pattern return a tuple  list of the
+# items which follow. For example  "12345AFA1234567" returns  (True, [4, 5, 6, 7]))
+    pattern = r"\d+AFA\d+"
+    if re.search(pattern, s):
+        match = re.search(r"(\d+)(AFA)(\d+)", s)
+        if match:
+            digits_after_AFA = match.group(3)
+            last_four_digits = digits_after_AFA[-4:]
+            return True, [int(digit) for digit in last_four_digits]
+    return False
+
+
+
+
+
+def Q7(s):
+    """ reverse the string s """
+    return s[::-1]   # This is a simple implementation using slicing
+
+
+
+###
+## GOOD YOU ARE DONE!
+##
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def test_Q7():
+    # Define test cases: a list of tuples where each tuple contains input and expected output
+    test_cases = [
+        ("hello", "olleh"),
+        ("world", "dlrow"),
+        ("", ""),  # Test case for empty string
+        ("a", "a"),  # Test case for single character
+        ("racecar", "racecar"),  # Test case for palindrome
+        ("12345", "54321")  # Test case for numeric strings
+    ]
+
+    # Run through each test case
+    for input_str, expected_output in test_cases:
+        result = Q7(input_str)  # Call the reverse function
+        if result == expected_output:
+            print(f"Test passed for input '{input_str}'")
+        else:
+            print(f"Test failed for input '{input_str}'. Expected '{expected_output}', but got '{result}'")
+
+# Example reverse function (you would replace this with your own reverse function)
+
+
+
+
+# Function Q1 that implements the given mathematical expression
+
+
+# Function to test Q1
+def testQ1():
+    # Corrected test cases
+    test_cases = [
+        (4, 6, 15),  # 4 * 3 + (6 // 2) = 12 + 3 = 15
+        (10, 5, 32),  # 10 * 3 + (5 // 2) = 30 + 2 = 32
+        (0, 8, 4),  # 0 * 3 + (8 // 2) = 0 + 4 = 4
+        (3, 10, 14),  # 3 * 3 + (10 // 2) = 9 + 5 = 14
+        (1, 1, 3),  # 1 * 3 + (1 // 2) = 3 + 0 = 3
+    ]
+
+    # Run through each test case
+    for a, b, expected_output in test_cases:
+        result = Q1(a, b)
+        if result == expected_output:
+            print(f"Test passed for inputs a={a}, b={b}")
+        else:
+            print(f"Test failed for inputs a={a}, b={b}. Expected {expected_output}, but got {result}")
+
+
+# Function to test Q2
+def testQ2():
+    # Test cases: a list of tuples where each tuple contains input and expected output
+    test_cases = [
+        ("Hello World!", "The lower case value is hello world!"),
+        ("PYTHON", "The lower case value is python"),
+        ("TeStInG", "The lower case value is testing"),
+        ("", "The lower case value is "),  # Empty string test case
+        ("123abc", "The lower case value is 123abc")  # Test case with numbers and letters
+    ]
+
+    # Run through each test case
+    for input_str, expected_output in test_cases:
+        result = Q2(input_str)
+        if result == expected_output:
+            print(f"Test passed for input '{input_str}'")
+        else:
+            print(f"!!!!!Test failed for input '{input_str}'. Expected '{expected_output}', but got '{result}'")
+
+
+# Function to test Q3
+def testQ3():
+    # Call the Q3 function to generate the list
+    print("Q3")
+    result = Q3()
+
+
+    if result is None :
+        print("Q3 failed" )
+        return
+
+    # Test 1: Check that the length of the list is 128
+    if len(result) == 128:
+        print("Test 1 passed: List contains 128 items")
+    else:
+        print(f"Test 1 failed: List contains {len(result)} items instead of 128")
+        return
+
+    # Test 2: Check that the first string is "1 Green Bottles"
+    if result[0] == "1 Green Bottles":
+        print("Test 2 passed: First item is correct")
+    else:
+        print(f"Test 2 failed: First item is '{result[0]}' instead of '1 Green Bottles'")
+
+    # Test 3: Check that the last string is "128 Green Bottles"
+    if result[-1] == "128 Green Bottles":
+        print("Test 3 passed: Last item is correct")
+    else:
+        print(f"Test 3 failed: Last item is '{result[-1]}' instead of '128 Green Bottles'")
+
+    # Test 4: Check that all strings follow the correct format
+    correct = True
+    for i in range(128):
+        if result[i] != f"{i + 1} Green Bottles":
+            correct = False
+            print(f"Test 4 failed: Item at index {i} is '{result[i]}' instead of '{i + 1} Green Bottles'")
+            break
+    if correct:
+        print("Test 4 passed: All items follow the correct format")
+
+
+# Function to test Q4
+def testQ4():
+    # Test cases: a list of tuples where each tuple contains inputs (a, b) and expected output
+    test_cases = [
+        (True, True, True),  # Both True, should return True
+        (True, False, False),  # One False, should return False
+        (False, True, False),  # One False, should return False
+        (False, False, False),  # Both False, should return False
+    ]
+    print("Q4")
+
+    # Run through each test case
+    for a, b, expected_output in test_cases:
+        result = Q4(a, b)
+        if result == expected_output:
+            print(f"Test passed for inputs a={a}, b={b}")
+        else:
+            print(f"Test failed for inputs a={a}, b={b}. Expected {expected_output}, but got {result}")
+
+
+# Function to test Q5
+def testQ5():
+    # Test cases: a list of tuples where each tuple contains inputs (a, b, c) and expected output
+    test_cases = [
+        (True, True, False, True),  # a and b are True, should return True
+        (True, False, True, True),  # a and c are True, should return True
+        (True, True, True, False),  # a, b, and c are True, should return False
+        (False, True, True, False),  # a is False, should return False
+        (True, False, False, False),  # Only a is True, should return False
+        (False, False, False, False),  # All False, should return False
+    ]
+
+    # Run through each test case
+    for a, b, c, expected_output in test_cases:
+        result = Q5(a, b, c)
+        if result == expected_output:
+            print(f"Test passed for inputs a={a}, b={b}, c={c}")
+        else:
+            print(f"Test failed for inputs a={a}, b={b}, c={c}. Expected {expected_output}, but got {result}")
+
+
+# Function to test if Q6 exists and if it works correctly
+def testQ6():
+    # Check if the Q6 function exists
+    if 'Q6' not in globals():
+        print("Q6 function does not exist.")
+        return
+
+    # Test cases: a list of tuples with input string and expected output
+    test_cases = [
+        ("12345AFA1234567", (True, [4, 5, 6, 7])),  # Correct pattern, more than 4 digits after AFA
+        ("5678AFA123", (True, [1, 2, 3])),  # Correct pattern, exactly 3 digits after AFA
+        ("1AFA2345", (True, [2, 3, 4, 5])),  # AFA with less digits but still valid
+        ("9876AFA1", (True, [1])),  # Only 1 digit after AFA
+        ("12345AFA", False),  # No digits after AFA
+        ("AFA12345", False),  # No digits before AFA
+        ("XYZAFA789", False),  # No digits before AFA
+    ]
+
+    # Run through each test case
+    for input_str, expected_output in test_cases:
+        result = Q6(input_str)
+        if result == expected_output:
+            print(f"Test passed for input '{input_str}'")
+        else:
+            print(f"Test failed for input '{input_str}'. Expected {expected_output}, but got {result}")
+
+
+# Run the test function
+testQ1()
+print("-"*50)
+testQ2()
+print("-"*50)
+testQ3()
+print("-"*50)
+testQ4()
+print("-"*50)
+testQ5()
+print("-"*50)
+testQ6()
+print("-"*50)
+# Call the test function
+test_Q7()
